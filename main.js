@@ -75,3 +75,40 @@
     });
   });
 })();
+
+// Download: jars are stored in parts (GitHub upload limit). Join them in the browser.
+(function () {
+  document.querySelectorAll('a[data-jar]').forEach(function (btn) {
+    btn.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      if (btn.getAttribute('aria-busy') === 'true') return;
+      var name = btn.getAttribute('data-jar');
+      var n = parseInt(btn.getAttribute('data-parts'), 10) || 1;
+      var label = btn.querySelector('span') || btn;
+      var old = label.textContent;
+      btn.setAttribute('aria-busy', 'true');
+      label.textContent = 'Preparing…';
+      var reqs = [];
+      for (var i = 0; i < n; i++) {
+        reqs.push(fetch('dl/' + name + '.part' + i).then(function (r) {
+          if (!r.ok) throw new Error('missing part');
+          return r.arrayBuffer();
+        }));
+      }
+      Promise.all(reqs).then(function (parts) {
+        var blob = new Blob(parts, { type: 'application/java-archive' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url; a.download = name;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        label.textContent = 'Downloaded';
+      }).catch(function () {
+        label.textContent = 'Download failed, try again';
+      }).then(function () {
+        btn.removeAttribute('aria-busy');
+        setTimeout(function () { label.textContent = old; }, 2500);
+      });
+    });
+  });
+})();
