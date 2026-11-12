@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiki · JettUnified</title>
+<meta name="description" content="JettUnified documentation: installation, modules.yml, storage, every module, all commands and permissions.">
+<meta name="theme-color" content="#0d0c0a">
+<meta property="og:title" content="Wiki · JettUnified">
+<meta property="og:description" content="JettUnified documentation: installation, modules.yml, storage, every module, all commands and permissions.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2Z" stroke="#d6a84e" stroke-width="1.6"/><path d="M19.5 9v9.2c0 2.6-1.6 4.3-4.1 4.3-1.6 0-2.9-.7-3.7-1.9" stroke="#d6a84e" stroke-width="2.2" stroke-linecap="square"/></svg><span>JettUnified</span><small>v1.0</small></a>
+    <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="wiki.html" aria-current="page">Wiki</a></li><li><a href="download.html">Download</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download</a></div>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </nav>
+</header>
+<main id="main">
+
+<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Wiki</div>
+  <h1>Wiki</h1>
+  <p>Set up JettUnified, configure each module and look up any command or permission.</p>
+</div></section>
+<div class="wrap docs">
+  <aside class="docs-nav" aria-label="Wiki"><input class="search" type="search" placeholder="Search the wiki…" aria-label="Search the wiki"><h4>Getting started</h4><ul><li><a href="#introduction">Introduction</a></li><li><a href="#installation">Installation</a></li><li><a href="#files">Folder layout</a></li><li><a href="#modules-yml">modules.yml</a></li><li><a href="#storage">Storage</a></li></ul><h4>Modules</h4><ul><li><a href="#teleport">Spawn, Lobby, Homes, Warps &amp; Back</a></li><li><a href="#tpa">TPA</a></li><li><a href="#rtp">RTP</a></li><li><a href="#kits">Kits</a></li><li><a href="#teams">Teams</a></li><li><a href="#economy">Economy</a></li><li><a href="#viewers">Ender Chest, InvSee &amp; EcSee</a></li><li><a href="#customrecipe">Custom Recipes</a></li><li><a href="#broadcast">Broadcast</a></li><li><a href="#tab">TAB &amp; Scoreboard</a></li><li><a href="#smpcore">SMPCore</a></li><li><a href="#moderation">Moderation</a></li><li><a href="#admintools">Admin Tools &amp; Utilities</a></li></ul><h4>Reference</h4><ul><li><a href="#commands">All commands</a></li><li><a href="#permissions">All permissions</a></li><li><a href="#faq">FAQ</a></li></ul></aside>
+  <article class="doc"><section id="introduction"><h2>Introduction</h2>
+<p>JettUnified is a modular survival plugin for Paper. It bundles 21 modules (teleportation, kits, teams, economy, TAB, moderation, admin tools and SMPCore gameplay rules) into one plugin.</p>
+<p>This wiki covers installation, the main config files, every module, and the full command and permission lists.</p>
+<div class="callout"><strong>Tip:</strong> use the search box on the left to filter topics. Every config shown here is the default file shipped with version 1.0.</div></section><section id="installation"><h2>Installation</h2>
+<ol class="steps">
+<li>Check your server: <strong>Paper 1.21.x</strong> (1.21.1 or newer) with Java 21, or <strong>Paper 26.3</strong> with Java 25.</li>
+<li><a href="download.html">Download</a> the jar for your version.</li>
+<li>Put it in your server's <code>plugins/</code> folder.</li>
+<li>Start the server. JettUnified creates its config folder and the SQLite database.</li>
+<li>Edit <code>plugins/JettUnified/modules.yml</code> to choose your modules, then run <code>/ju reload</code>.</li>
+</ol>
+<h3>Optional plugins</h3>
+<ul>
+<li><strong>LuckPerms</strong>: rank prefixes in TAB, group formatting and <code>/rankinfo</code>.</li>
+<li><strong>Vault</strong>: lets shop plugins use the JettUnified economy.</li>
+<li><strong>PlaceholderAPI</strong>: use any PlaceholderAPI placeholder in TAB and the scoreboard.</li>
+</ul>
+<div class="callout"><strong>Shop plugins:</strong> JettUnified loads before EconomyShopGUI so the economy is ready when the shop starts.</div></section><section id="files"><h2>Folder layout</h2><div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>plugins/JettUnified/</span></div><pre><code>JettUnified/
+├── modules.yml          # turn modules on and off
+├── storage.yml          # database settings
+├── messages.yml         # global messages
+├── data/
+│   └── jettunified.db   # SQLite database
+└── modules/
+    ├── homes/           # config.yml, messages.yml
+    ├── warps/
+    ├── kits/
+    ├── teams/
+    ├── tab/             # config.yml, animations.yml
+    ├── smpcore/
+    │   └── SmpCoreModules/   # one file per SMPCore feature
+    ├── commands/        # moderation, admin tools, utilities
+    └── …</code></pre></div><p>Each module keeps its own <code>config.yml</code> and <code>messages.yml</code>, so you never have to scroll one huge file.</p></section><section id="modules-yml"><h2>modules.yml</h2>
+<p>This is the main switchboard. Set a module to <code>false</code> and run <code>/ju reload</code>. The module unloads and its commands are removed, without restarting the server. You can also open the Module Manager GUI with <code>/ju modules</code>.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules.yml</span></div><pre><code><span class="c-key">settings</span>:
+  <span class="c-key">debug</span>: <span class="c-false">false</span>
+  <span class="c-key">language</span>: <span class="c-str">en</span>
+<span class="c-key">modules</span>:
+  <span class="c-key">spawn</span>: <span class="c-true">true</span>
+  <span class="c-key">homes</span>: <span class="c-true">true</span>
+  <span class="c-key">warps</span>: <span class="c-true">true</span>
+  <span class="c-key">back</span>: <span class="c-true">true</span>
+  <span class="c-key">tpa</span>: <span class="c-true">true</span>
+  <span class="c-key">rtp</span>: <span class="c-true">true</span>
+  <span class="c-key">kits</span>: <span class="c-true">true</span>
+  <span class="c-key">teams</span>: <span class="c-true">true</span>
+  <span class="c-key">lobby</span>: <span class="c-true">true</span>
+  <span class="c-key">echest</span>: <span class="c-true">true</span>
+  <span class="c-key">invsee</span>: <span class="c-true">true</span>
+  <span class="c-key">ecsee</span>: <span class="c-true">true</span>
+  <span class="c-key">customrecipe</span>: <span class="c-true">true</span>
+  <span class="c-key">broadcast</span>: <span class="c-true">true</span>
+  <span class="c-key">tab</span>: <span class="c-true">true</span>
+  <span class="c-key">economy</span>: <span class="c-true">true</span>
+  <span class="c-key">commands</span>:
+    <span class="c-key">moderation</span>: <span class="c-true">true</span>
+    <span class="c-key">admintools</span>: <span class="c-true">true</span>
+    <span class="c-key">utilities</span>: <span class="c-true">true</span>
+  <span class="c-key">smpcore</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+    <span class="c-key">potionlimiter</span>: <span class="c-true">true</span>
+    <span class="c-key">enchantlimiter</span>: <span class="c-true">true</span>
+    <span class="c-key">combat</span>: <span class="c-true">true</span>
+    <span class="c-key">worldrules</span>: <span class="c-true">true</span>
+    <span class="c-key">qol</span>: <span class="c-true">true</span>
+    <span class="c-key">blockitem</span>: <span class="c-true">true</span>
+    <span class="c-key">cooldowncontrol</span>: <span class="c-true">true</span>
+    <span class="c-key">itemlimits</span>: <span class="c-true">true</span>
+<span class="c-key">luckperms-rank-support</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">tab</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+    <span class="c-key">format</span>: <span class="c-str">&quot;{prefix}{player}&quot;</span>
+    <span class="c-key">name-color-from-prefix</span>: <span class="c-false">false</span>
+  <span class="c-key">fallback</span>:
+    <span class="c-key">enabled</span>: <span class="c-false">false</span>
+    <span class="c-key">prefix</span>: <span class="c-str">&quot;&amp;7[MEMBER] &quot;</span></code></pre></div>
+<p>The <code>luckperms-rank-support</code> block controls the Rank Display module. If LuckPerms is not installed, it does nothing.</p></section><section id="storage"><h2>Storage</h2>
+<p>JettUnified needs no database server. Economy balances and teams are stored in an SQLite file that is created on first start. Homes, warps, kits and other module data are saved in YAML files inside each module folder.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>storage.yml</span></div><pre><code><span class="c-com"># JettUnified storage.</span>
+<span class="c-com"># SQLite is the default and needs no setup. The database is created automatically.</span>
+<span class="c-com"># Keep the database on a local disk, not on a network share.</span>
+<span class="c-key">storage</span>:
+  <span class="c-key">type</span>: <span class="c-str">sqlite</span>
+  <span class="c-key">sqlite</span>:
+    <span class="c-key">file</span>: <span class="c-str">data/jettunified.db</span>
+<span class="c-com"># MySQL is reserved for networks and is not enabled yet.</span>
+  <span class="c-key">mysql</span>:
+    <span class="c-key">enabled</span>: <span class="c-false">false</span>
+    <span class="c-key">host</span>: <span class="c-str">localhost</span>
+    <span class="c-key">port</span>: <span class="c-num">3306</span>
+    <span class="c-key">database</span>: <span class="c-str">jettunified</span>
+    <span class="c-key">username</span>: <span class="c-str">root</span>
+    <span class="c-key">password</span>: <span class="c-str">&quot;&quot;</span>
+    <span class="c-key">use-ssl</span>: <span class="c-false">false</span></code></pre></div>
+<ul>
+<li>YAML files are written to a temporary file first and then swapped in, so a crash during a save can't leave a half-written file.</li>
+<li>If SQLite is not available, economy and teams fall back to YAML.</li>
+<li><code>/ju storage migrate</code> moves old YAML economy data into SQLite.</li>
+</ul>
+<h3>Storage commands</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th><th>Permission</th><th>Default</th></tr></thead><tbody><tr><td><code>/ju storage status</code></td><td>Show the active storage backend</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage backup</code></td><td>Back up the database</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage migrate</code></td><td>Migrate data between storage backends</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage integrity</code></td><td>Check the database</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr></tbody></table></div>
+<div class="callout"><strong>MySQL:</strong> the <code>mysql</code> block in <code>storage.yml</code> is reserved for networks and is not enabled yet in 1.0.</div>
+<div class="callout warn"><strong>Note:</strong> keep the database on a local disk, not on a network share.</div></section><section id="teleport"><h2>Spawn, Lobby, Homes, Warps &amp; Back</h2>
+<p>All teleport modules share the same pattern: a <strong>delay</strong> (cancelled if the player moves), and a <strong>cooldown</strong> between uses.</p>
+<h3>Homes</h3>
+<p>Players get 3 homes by default. Give <code>jettunified.homes.unlimited</code> for no limit.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/homes/config.yml</span></div><pre><code><span class="c-key">homes</span>:
+  <span class="c-key">max</span>: <span class="c-num">3</span>
+  <span class="c-key">overwrite-existing</span>: <span class="c-false">false</span>
+<span class="c-key">teleport</span>:
+  <span class="c-key">delay</span>: <span class="c-num">3</span>
+  <span class="c-key">cancel-on-move</span>: <span class="c-true">true</span>
+<span class="c-key">cooldown</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">duration</span>: <span class="c-num">10</span></code></pre></div>
+<h3>Warps</h3>
+<p>Warps are admin-only by default. Set <code>player-warps.enabled: true</code> to let players make their own, up to the limit. <code>jettunified.warp.admin</code> sees every warp.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/warps/config.yml</span></div><pre><code><span class="c-key">teleport</span>:
+  <span class="c-key">delay</span>: <span class="c-num">3</span>
+  <span class="c-key">cancel-on-move</span>: <span class="c-true">true</span>
+<span class="c-key">cooldown</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">seconds</span>: <span class="c-num">10</span>
+<span class="c-key">player-warps</span>:
+  <span class="c-key">enabled</span>: <span class="c-false">false</span>
+  <span class="c-key">max</span>: <span class="c-num">3</span></code></pre></div>
+<h3>Back</h3>
+<p>Saves your location before death and before teleports. SMPCore Combat can block <code>/back</code> after a PvP death.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/back/config.yml</span></div><pre><code><span class="c-key">teleport</span>:
+  <span class="c-key">delay</span>: <span class="c-num">3</span>
+  <span class="c-key">cancel-on-move</span>: <span class="c-true">true</span>
+<span class="c-key">cooldown</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">seconds</span>: <span class="c-num">10</span>
+<span class="c-key">save-on</span>:
+  <span class="c-key">death</span>: <span class="c-true">true</span>
+  <span class="c-key">teleport</span>: <span class="c-true">true</span></code></pre></div></section><section id="tpa"><h2>TPA</h2><p>Teleport requests between players. Requests expire after 60 seconds. Players can block requests with <code>/tptoggle</code>.</p><div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/tpa/config.yml</span></div><pre><code><span class="c-key">request</span>:
+  <span class="c-key">expire-seconds</span>: <span class="c-num">60</span>
+<span class="c-key">teleport</span>:
+  <span class="c-key">delay</span>: <span class="c-num">3</span>
+  <span class="c-key">cancel-on-move</span>: <span class="c-true">true</span>
+<span class="c-key">cooldown</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">seconds</span>: <span class="c-num">10</span></code></pre></div></section><section id="rtp"><h2>RTP</h2><p>Random teleport within a radius around the player. It skips water, lava and leaves. On busy servers, pre-generate the world and set <code>only-generated-chunks: true</code>. Staff with <code>jettunified.rtp.bypasscooldown</code> skip the cooldown.</p><div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/rtp/config.yml</span></div><pre><code><span class="c-key">cooldown</span>:
+  <span class="c-key">seconds</span>: <span class="c-num">300</span>
+<span class="c-key">teleport</span>:
+  <span class="c-key">delay</span>: <span class="c-num">5</span>
+  <span class="c-key">cancel-on-move</span>: <span class="c-true">true</span>
+<span class="c-key">search</span>:
+  <span class="c-key">max-attempts</span>: <span class="c-num">50</span>
+  <span class="c-key">only-generated-chunks</span>: <span class="c-false">false</span>
+<span class="c-key">radius</span>:
+  <span class="c-key">min</span>: <span class="c-num">500</span>
+  <span class="c-key">max</span>: <span class="c-num">5000</span>
+<span class="c-key">avoid</span>:
+  <span class="c-key">water</span>: <span class="c-true">true</span>
+  <span class="c-key">lava</span>: <span class="c-true">true</span>
+  <span class="c-key">leaves</span>: <span class="c-true">true</span>
+<span class="c-key">effects</span>:
+  <span class="c-key">sound</span>: <span class="c-true">true</span>
+  <span class="c-key">particles</span>: <span class="c-true">true</span></code></pre></div></section><section id="kits"><h2>Kits</h2>
+<p><code>/kit</code> opens the kit menu. Players can preview a kit before claiming. Kits locked behind a permission show in the <strong>Ranked Kits</strong> menu. The permission is <code>jettunified.kits.&lt;kit&gt;</code>.</p>
+<h3>Admin subcommands</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>/kit create &lt;name&gt;</code></td><td>Create a kit from your inventory</td></tr>
+<tr><td><code>/kit edit &lt;name&gt;</code></td><td>Edit a kit in the GUI</td></tr>
+<tr><td><code>/kit delete &lt;name&gt;</code></td><td>Delete a kit</td></tr>
+<tr><td><code>/kit give &lt;player&gt; &lt;name&gt;</code></td><td>Give a kit to a player</td></tr>
+<tr><td><code>/kit preview &lt;name&gt;</code></td><td>Preview a kit</td></tr>
+<tr><td><code>/kit reload</code></td><td>Reload kits</td></tr>
+</tbody></table></div>
+<p>Cooldowns are saved in the database, so they survive restarts.</p></section><section id="teams"><h2>Teams</h2>
+<p>Teams have an owner and members with roles. They can be public or invite-only. They get their own chat, ally chat, home, warps (5 by default) and a shared ender chest.</p>
+<div class="table-wrap"><table><thead><tr><th>/team …</th><th>What it does</th></tr></thead><tbody><tr><td><code>create &lt;name&gt;</code></td><td>Create a team</td></tr><tr><td><code>disband</code></td><td>Delete your team</td></tr><tr><td><code>invite &lt;player&gt;</code></td><td>Invite a player</td></tr><tr><td><code>join &lt;team&gt;</code></td><td>Join a public team or accept an invite</td></tr><tr><td><code>leave</code></td><td>Leave your team</td></tr><tr><td><code>kick &lt;player&gt;</code></td><td>Remove a member</td></tr><tr><td><code>promote / demote &lt;player&gt;</code></td><td>Change a member&#x27;s role</td></tr><tr><td><code>owner &lt;player&gt;</code></td><td>Hand over ownership</td></tr><tr><td><code>info [team]</code></td><td>Show team info</td></tr><tr><td><code>list</code></td><td>List teams</td></tr><tr><td><code>members</code></td><td>List members</td></tr><tr><td><code>chat</code></td><td>Team chat</td></tr><tr><td><code>allychat</code></td><td>Ally chat</td></tr><tr><td><code>ally / unally &lt;team&gt;</code></td><td>Manage allies</td></tr><tr><td><code>allies</code></td><td>List allies</td></tr><tr><td><code>sethome / home / delhome</code></td><td>Team home</td></tr><tr><td><code>setwarp / warp / delwarp / warps</code></td><td>Team warps</td></tr><tr><td><code>echest</code></td><td>Shared ender chest</td></tr><tr><td><code>pvp</code></td><td>Friendly fire on or off</td></tr><tr><td><code>color</code></td><td>Team color</td></tr><tr><td><code>title / motd</code></td><td>Team title and message of the day</td></tr><tr><td><code>settings</code></td><td>Open the settings GUI</td></tr><tr><td><code>chatspy</code></td><td>Staff: read team chat</td></tr></tbody></table></div>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/teams/config.yml</span></div><pre><code><span class="c-key">team</span>:
+  <span class="c-key">create</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">max-name-length</span>: <span class="c-num">16</span>
+  <span class="c-key">max-warps</span>: <span class="c-num">5</span>
+  <span class="c-key">invite</span>:
+    <span class="c-key">expire-seconds</span>: <span class="c-num">60</span>
+  <span class="c-key">disband</span>:
+    <span class="c-key">confirm-seconds</span>: <span class="c-num">10</span>
+  <span class="c-key">privacy</span>:
+    <span class="c-key">default</span>: <span class="c-str">INVITE_ONLY</span>
+  <span class="c-key">chat</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">ally-chat</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">nametag</span>:
+    <span class="c-key">enabled</span>: <span class="c-false">false</span>
+  <span class="c-key">tab-prefix</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">chat-prefix</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">enderchest</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+    <span class="c-key">size</span>: <span class="c-num">27</span>
+<span class="c-key">teleport</span>:
+  <span class="c-key">delay</span>: <span class="c-num">3</span>
+  <span class="c-key">cancel-on-move</span>: <span class="c-true">true</span>
+<span class="c-key">cooldown</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">duration</span>: <span class="c-num">10</span>
+<span class="c-key">titles</span>:
+  <span class="c-key">ally-warning</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+<span class="c-key">sounds</span>:
+  <span class="c-key">ally-warning</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span></code></pre></div></section><section id="economy"><h2>Economy</h2>
+<p>JettUnified stores balances itself. Vault is optional. With Vault installed, JettUnified registers as the Vault economy provider so shop plugins can use it.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/economy/config.yml</span></div><pre><code><span class="c-key">enabled</span>: <span class="c-true">true</span>
+<span class="c-key">currency-format</span>: <span class="c-str">&quot;$%amount%&quot;</span>
+<span class="c-key">decimals</span>: <span class="c-num">2</span>
+<span class="c-key">starting-balance</span>: <span class="c-num">0.0</span>
+<span class="c-key">currency-name</span>: <span class="c-str">&quot;Dollar&quot;</span>
+<span class="c-key">currency-name-plural</span>: <span class="c-str">&quot;Dollars&quot;</span>
+<span class="c-key">vault</span>:
+  <span class="c-key">register-provider</span>: <span class="c-true">true</span>
+  <span class="c-key">override-existing</span>: <span class="c-false">false</span></code></pre></div>
+<p>Placeholders: <code>%player_balance%</code>, <code>%balance%</code>, <code>%player_balance_formatted%</code>, <code>%balance_formatted%</code>, <code>%currency%</code>, <code>%currency_name%</code>, <code>%currency_plural%</code>.</p></section><section id="viewers"><h2>Ender Chest, InvSee &amp; EcSee</h2>
+<p><code>/ec</code> opens your own ender chest. It can be 27 or 54 slots. Staff can open other players' inventories with <code>/invsee</code> and ender chests with <code>/ecsee</code>, including offline players.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/echest/config.yml</span></div><pre><code><span class="c-key">size</span>: <span class="c-num">27</span></code></pre></div><div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/invsee/config.yml</span></div><pre><code><span class="c-key">allow-self-invsee</span>: <span class="c-false">false</span>
+<span class="c-key">allow-offline-inspection</span>: <span class="c-true">true</span>
+<span class="c-key">gui-title</span>: <span class="c-str">&quot;Inventory of &lt;player&gt;&quot;</span></code></pre></div></section><section id="customrecipe"><h2>Custom Recipes</h2>
+<p><code>/cc</code> (or <code>/customcrafting</code>) opens the recipe editor. Put the ingredients in the grid, set the result and save. Recipes work right away, with no restart.</p>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>/cc create &lt;name&gt;</code></td><td>Make a new recipe</td></tr>
+<tr><td><code>/cc edit &lt;name&gt;</code></td><td>Edit a recipe</td></tr>
+<tr><td><code>/cc delete &lt;name&gt;</code></td><td>Delete a recipe</td></tr>
+<tr><td><code>/cc list</code></td><td>List recipes</td></tr>
+<tr><td><code>/cc disablerecipe &lt;id&gt;</code></td><td>Turn off a vanilla recipe</td></tr>
+<tr><td><code>/cc enablerecipe &lt;id&gt;</code></td><td>Turn a vanilla recipe back on</td></tr>
+<tr><td><code>/cc disabled</code></td><td>List disabled vanilla recipes</td></tr>
+<tr><td><code>/cc reload</code></td><td>Reload recipes</td></tr>
+</tbody></table></div>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>customrecipe/disable-vanilla-recipes.yml</span></div><pre><code><span class="c-key">disabled-recipes</span>:
+  - &quot;mace&quot;
+  - &quot;echo_shard&quot;
+  - &quot;minecraft:elytra&quot; </code></pre></div></section><section id="broadcast"><h2>Broadcast</h2><p><code>/bc</code> sends a message in chat with a prefix. <code>/bcf</code> shows it as a full-screen title with a sound.</p><div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/broadcast/config.yml</span></div><pre><code><span class="c-key">prefix</span>: <span class="c-str">&quot;&amp;6&amp;l[&amp;4&amp;lBROADCAST&amp;6&amp;l]&quot;</span>
+<span class="c-key">message-color</span>: <span class="c-str">&quot;&amp;f&quot;</span>
+<span class="c-key">title</span>: <span class="c-str">&quot;&amp;4&amp;lANNOUNCEMENT&quot;</span>
+<span class="c-key">subtitle</span>: <span class="c-str">&quot;&amp;f&lt;message&gt;&quot;</span>
+<span class="c-key">fade-in</span>: <span class="c-num">10</span>
+<span class="c-key">stay</span>: <span class="c-num">70</span>
+<span class="c-key">fade-out</span>: <span class="c-num">20</span>
+<span class="c-key">sound</span>: <span class="c-str">&quot;ENTITY_ENDER_DRAGON_GROWL&quot;</span></code></pre></div></section><section id="tab"><h2>TAB &amp; Scoreboard</h2>
+<p>The TAB module handles the player list header and footer, tab name formatting, the sidebar scoreboard, nametags and objectives. It supports MiniMessage, legacy <code>&amp;</code> colors, PlaceholderAPI and animations from <code>animations.yml</code>.</p>
+<h3>Built-in placeholders</h3>
+<p><code>%player%</code> <code>%online%</code> <code>%max_online%</code> <code>%ping%</code> <code>%world%</code> <code>%health%</code> <code>%max_health%</code> <code>%level%</code> <code>%x%</code> <code>%y%</code> <code>%z%</code> <code>%gamemode%</code> <code>%luckperms-prefix%</code> <code>%luckperms-suffix%</code> <code>%team_prefix%</code> <code>%team_name%</code> <code>%animation:Name%</code></p>
+<h3>Conditions</h3>
+<p>Header designs and the scoreboard can use <code>display-condition</code>. Supported: <code>permission:xxx</code>, <code>world:xxx</code>, <code>%placeholder%==value</code> and <code>%placeholder%!=value</code>.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/tab/config.yml</span></div><pre><code><span class="c-key">debug</span>: <span class="c-false">false</span>
+<span class="c-key">placeholder-refresh-intervals</span>:
+  <span class="c-key">default</span>: <span class="c-num">20</span>
+<span class="c-key">header-footer</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">default-design</span>: <span class="c-str">default</span>
+  <span class="c-key">designs</span>:
+    <span class="c-key">default</span>:
+      <span class="c-key">display-condition</span>: <span class="c-str">&quot;&quot;</span>
+      <span class="c-key">header</span>:
+        - &quot;&lt;gradient:#00D4FF:#7C4DFF&gt;&lt;bold&gt;JETTUNIFIED&lt;/bold&gt;&lt;/gradient&gt;&quot;
+        - &quot;&lt;gray&gt;Welcome, &lt;white&gt;%player%&lt;/white&gt; &lt;gray&gt;!&lt;/gray&gt;&quot;
+        - &quot;&lt;dark_gray&gt;Ping: &lt;white&gt;%ping%&lt;/white&gt; &lt;dark_gray&gt;|&lt;/dark_gray&gt; Online: &lt;white&gt;%online%&lt;/white&gt;&quot;
+        - &quot;%animation:Welcome%&quot;
+      <span class="c-key">footer</span>:
+        - &quot;&quot;
+        - &quot;&lt;gray&gt;World: &lt;white&gt;%world%&lt;/white&gt; &lt;dark_gray&gt;|&lt;/dark_gray&gt; Health: &lt;red&gt;%health%&lt;/red&gt;&quot;
+        - &quot;&lt;gray&gt;Rank: &lt;white&gt;%luckperms-prefix%&lt;/white&gt;&quot;
+        - &quot;&lt;dark_gray&gt;play.example.net&lt;/dark_gray&gt;&quot;
+    <span class="c-key">nether_example</span>:
+      <span class="c-key">display-condition</span>: <span class="c-str">&quot;world:world_nether&quot;</span>
+      <span class="c-key">header</span>:
+        - &quot;&lt;red&gt;&lt;bold&gt;NETHER&lt;/bold&gt;&lt;/red&gt;&quot;
+        - &quot;&lt;gray&gt;Be careful, %player%&lt;/gray&gt;&quot;
+      <span class="c-key">footer</span>:
+        - &quot;&lt;gray&gt;Health: %health% | Ping: %ping%&lt;/gray&gt;&quot;
+<span class="c-key">tablist-name-formatting</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">disable-condition</span>: <span class="c-str">&quot;&quot;</span>
+<span class="c-key">format</span>:
+  <span class="c-key">show-rank</span>: <span class="c-true">true</span>
+  <span class="c-key">show-team</span>: <span class="c-true">true</span>
+<span class="c-key">groups</span>:
+  <span class="c-key">_DEFAULT_</span>:
+    <span class="c-key">tabprefix</span>: <span class="c-str">&quot;%luckperms-prefix% &quot;</span>
+    <span class="c-key">tagprefix</span>: <span class="c-str">&quot;%luckperms-prefix% &quot;</span>
+    <span class="c-key">tabsuffix</span>: <span class="c-str">&quot; %luckperms-suffix%&quot;</span>
+    <span class="c-key">tagsuffix</span>: <span class="c-str">&quot; %luckperms-suffix%&quot;</span>
+  <span class="c-key">Owner</span>:
+    <span class="c-key">tabprefix</span>: <span class="c-str">&quot;&lt;gradient:#FF5555:#FFAA00&gt;&lt;bold&gt;[Owner]&lt;/bold&gt;&lt;/gradient&gt; &quot;</span>
+    <span class="c-key">tagprefix</span>: <span class="c-str">&quot;&lt;red&gt;[Owner] &lt;/red&gt;&quot;</span>
+    <span class="c-key">tabsuffix</span>: <span class="c-str">&quot;&quot;</span>
+    <span class="c-key">tagsuffix</span>: <span class="c-str">&quot;&quot;</span>
+  <span class="c-key">Admin</span>:
+    <span class="c-key">tabprefix</span>: <span class="c-str">&quot;&lt;red&gt;[Admin]&lt;/red&gt; &quot;</span>
+    <span class="c-key">tagprefix</span>: <span class="c-str">&quot;&lt;red&gt;[Admin] &lt;/red&gt;&quot;</span>
+    <span class="c-key">tabsuffix</span>: <span class="c-str">&quot;&quot;</span>
+    <span class="c-key">tagsuffix</span>: <span class="c-str">&quot;&quot;</span>
+  <span class="c-key">Member</span>:
+    <span class="c-key">tabprefix</span>: <span class="c-str">&quot;&lt;gray&gt;[Member] &lt;/gray&gt;&quot;</span>
+    <span class="c-key">tagprefix</span>: <span class="c-str">&quot;&lt;gray&gt;[Member] &lt;/gray&gt;&quot;</span>
+    <span class="c-key">tabsuffix</span>: <span class="c-str">&quot;&quot;</span>
+    <span class="c-key">tagsuffix</span>: <span class="c-str">&quot;&quot;</span>
+<span class="c-key">scoreboard</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">title</span>: <span class="c-str">&quot;&lt;gradient:#00D4FF:#FF00AA&gt;&lt;bold&gt;JettUnified&lt;/bold&gt;&lt;/gradient&gt;&quot;</span>
+  <span class="c-key">refresh-interval</span>: <span class="c-num">20</span>
+  <span class="c-key">display-condition</span>: <span class="c-str">&quot;&quot;</span>
+  <span class="c-key">lines</span>:
+    - &quot;&quot;
+    - &quot;&lt;gray&gt;Player: &lt;white&gt;%player%&lt;/white&gt;&quot;
+    - &quot;&lt;gray&gt;Rank: &lt;white&gt;%luckperms-prefix%&lt;/white&gt;&quot;
+    - &quot;&lt;gray&gt;Ping: &lt;white&gt;%ping%ms&lt;/white&gt;&quot;
+    - &quot;&lt;gray&gt;World: &lt;white&gt;%world%&lt;/white&gt;&quot;
+    - &quot;&lt;gray&gt;Health: &lt;red&gt;%health%/%max_health%&lt;/red&gt;&quot;
+    - &quot;&lt;gray&gt;Online: &lt;white&gt;%online%/%max_online%&lt;/white&gt;&quot;
+    - &quot;&quot;
+    - &quot;%animation:ScoreboardLine%&quot;
+    - &quot;&quot;
+    - &quot;&lt;dark_gray&gt;play.example.net&lt;/dark_gray&gt;&quot;
+<span class="c-key">playerlist-objective</span>:
+  <span class="c-key">enabled</span>: <span class="c-false">false</span>
+  <span class="c-key">value</span>: <span class="c-str">&quot;%ping%&quot;</span>
+  <span class="c-key">fancy-value</span>: <span class="c-str">&quot;&quot;</span>
+  <span class="c-key">title</span>: <span class="c-str">&quot;Ping&quot;</span>
+  <span class="c-key">render-type</span>: <span class="c-str">INTEGER</span>
+<span class="c-key">belowname-objective</span>:
+  <span class="c-key">enabled</span>: <span class="c-false">false</span>
+  <span class="c-key">value</span>: <span class="c-str">&quot;%health%&quot;</span>
+  <span class="c-key">fancy-value</span>: <span class="c-str">&quot;&amp;c%health%&quot;</span>
+  <span class="c-key">title</span>: <span class="c-str">&quot;&amp;cHealth&quot;</span>
+  <span class="c-key">render-type</span>: <span class="c-str">INTEGER</span>
+<span class="c-key">conditions</span>:
+  <span class="c-key">example_nether</span>: <span class="c-str">&quot;world:world_nether&quot;</span>
+<span class="c-key">placeholders</span>:</code></pre></div></section><section id="smpcore"><h2>SMPCore</h2>
+<p>SMPCore is a set of gameplay rules for survival servers. Open the manager with <code>/smpcore</code>. Each feature has its own file in <code>modules/smpcore/SmpCoreModules/</code> and its own switch in <code>modules.yml</code>.</p>
+<h3>Potion Limiter</h3><p>Block any potion in normal, long and strong forms. It also blocks splash, lingering and tipped arrow versions. Click a potion in the menu to toggle it.</p><h3>Enchant Limiter</h3><p>Block an enchantment or set its max level, including mace enchantments. Bypass items work by item type. Certified items bypass all limits with a hidden ID on that one copy.</p><h3>Combat</h3><p>Combat timer (20 s by default) with optional combat-log kill. You can block commands, teleports, ender pearls, riptide, elytra, totems in combat and /back after a PvP death.</p><h3>World Rules</h3><p>Over 40 switches: portals, explosions, mob spawning, villager trading, fire spread, water and lava flow, raids, weather, natural regen, fall damage, PvP and workstation blocks.</p><h3>Quality of Life</h3><p>Auto-smelt, tree capitator, vein miner, double doors, silk-touch spawners, auto pickup, death chests (15 min expiry) and crop replant.</p><h3>Block Item</h3><p>Remove listed item types from the server with a warning. Certified items are still allowed.</p><h3>Cooldown Control</h3><p>Add an extra use cooldown to any item type, up to 300 seconds by default.</p><h3>Item Limits</h3><p>Set the most of an item type a player can carry. Main inventory, hotbar, offhand and armor all count.</p>
+<h3>Commands</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th><th>Permission</th><th>Default</th></tr></thead><tbody><tr><td><code>/smpcore</code></td><td>Open the SMPCore Manager GUI. Also reload, status, announce</td><td class="perm"><code>jettunified.smpcore</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/certified addhelditem</code></td><td>Certify the held item</td><td class="perm"><code>jettunified.enchantlimiter.certified.manage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/blockhanditem</code></td><td>Block the held item type</td><td class="perm"><code>jettunified.smpcore.blockitem</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/itemlimit &lt;amount&gt;</code></td><td>Limit the held item type</td><td class="perm"><code>jettunified.smpcore.itemlimit</code></td><td><span class="tag op">op</span></td></tr></tbody></table></div>
+<h3>Example: Quality of Life</h3>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/smpcore/SmpCoreModules/qol.yml</span></div><pre><code><span class="c-key">auto-smelt</span>: <span class="c-false">false</span>
+<span class="c-key">tree-capitator</span>: <span class="c-false">false</span>
+<span class="c-key">vein-miner</span>: <span class="c-false">false</span>
+<span class="c-key">double-doors</span>: <span class="c-false">false</span>
+<span class="c-key">silk-spawners</span>: <span class="c-false">false</span>
+<span class="c-key">auto-pickup</span>: <span class="c-false">false</span>
+<span class="c-key">death-chest</span>: <span class="c-false">false</span>
+<span class="c-key">death-chest-expiration-minutes</span>: <span class="c-num">15</span>
+<span class="c-key">crop-replant</span>: <span class="c-false">false</span></code></pre></div>
+<h3>Example: World Rules</h3>
+<p>Set a rule to <code>true</code> to turn that mechanic <strong>off</strong>.</p>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/smpcore/SmpCoreModules/worldrules.yml</span></div><pre><code><span class="c-key">show-feedback</span>: <span class="c-true">true</span>
+<span class="c-key">world-rules</span>:
+  <span class="c-key">disable-nether-portal</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-end-portal</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-end-gateway</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-tnt</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-tnt-minecart</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-end-crystal</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-bed-explosion</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-respawn-anchor</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-creeper</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-wither-block-damage</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-mob-spawning</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-hostile-spawning-nether</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-hostile-spawning-end</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-passive-spawning</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-animal-breeding</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-phantom-spawning</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-villager-trading</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-wandering-trader-trading</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-villager-breeding</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-villager-restocking</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-mob-griefing</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-fire-spread</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-leaves-decay</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-crop-trampling</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-water-flow</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-lava-flow</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-raids</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-pillager-patrols</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-natural-weather</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-natural-regen</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-natural-hunger</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-fall-damage</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-lava-damage</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-drowning</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-fire-damage</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-pvp</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-totem</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-enchanted-golden-apples</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-elytra</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-crafting-table</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-smithing-table</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-enchantment-table</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-anvil</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-ender-chest</span>: <span class="c-false">false</span>
+  <span class="c-key">disable-ender-pearl</span>: <span class="c-false">false</span></code></pre></div></section><section id="moderation"><h2>Moderation</h2>
+<p>Bans, temp bans, IP bans, mutes, jails and warnings. Data is kept in the database. Ban screens show your appeal link.</p>
+<ul>
+<li>Time format for temp bans, mutes and jails: <code>s</code>, <code>m</code>, <code>h</code>, <code>d</code>, <code>w</code>, <code>mo</code> (month), <code>y</code>. You can combine them, like <code>1d12h</code>.</li>
+<li>Jailed players can only move within a small radius and cannot use teleport or message commands.</li>
+<li>Muted players cannot use <code>/msg</code>, <code>/tell</code>, <code>/r</code> and similar commands.</li>
+</ul>
+<div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules/commands/config.yml (moderation part)</span></div><pre><code><span class="c-key">appeal-link</span>: <span class="c-str">&quot;discord.gg/yourserver&quot;</span>
+<span class="c-key">console</span>:
+  <span class="c-key">hide-multiline-disconnects</span>: <span class="c-true">true</span>
+<span class="c-key">jail</span>:
+  <span class="c-key">enabled</span>: <span class="c-true">true</span>
+  <span class="c-key">movement-radius</span>: <span class="c-num">1</span>
+  <span class="c-key">protection-radius</span>: <span class="c-num">2</span></code></pre></div>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th><th>Permission</th><th>Default</th></tr></thead><tbody><tr><td><code>/ban &lt;player&gt; [reason]</code></td><td>Ban a player</td><td class="perm"><code>jettunified.ban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/tempban &lt;player&gt; &lt;duration&gt; [reason]</code></td><td>Temporary ban</td><td class="perm"><code>jettunified.tempban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unban &lt;player&gt;</code></td><td>Remove a ban</td><td class="perm"><code>jettunified.unban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/untempban &lt;player&gt;</code></td><td>Remove a temp ban</td><td class="perm"><code>jettunified.untempban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/banip &lt;player|ip&gt;</code></td><td>IP ban. Alias: /ban-ip</td><td class="perm"><code>jettunified.banip</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unbanip &lt;ip&gt;</code></td><td>Remove an IP ban</td><td class="perm"><code>jettunified.unbanip</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/banlist</code></td><td>List bans</td><td class="perm"><code>jettunified.banlist</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/kick &lt;player&gt; [reason]</code></td><td>Kick a player</td><td class="perm"><code>jettunified.kick</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/mute &lt;player&gt; [duration] [reason]</code></td><td>Mute a player</td><td class="perm"><code>jettunified.mute</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unmute &lt;player&gt;</code></td><td>Unmute a player</td><td class="perm"><code>jettunified.unmute</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/muteinfo &lt;player&gt;</code></td><td>Show mute details</td><td class="perm"><code>jettunified.muteinfo</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/setjail &lt;name&gt;</code></td><td>Create a jail</td><td class="perm"><code>jettunified.setjail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/deljail &lt;name&gt;</code></td><td>Delete a jail</td><td class="perm"><code>jettunified.deljail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jails</code></td><td>List jails</td><td class="perm"><code>jettunified.jails</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jail &lt;player&gt; &lt;jail&gt; [duration]</code></td><td>Jail a player</td><td class="perm"><code>jettunified.jail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unjail &lt;player&gt;</code></td><td>Release a player</td><td class="perm"><code>jettunified.unjail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jailtime</code></td><td>Show your remaining jail time</td><td class="perm"><code>jettunified.jailtime</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/warn &lt;player&gt; &lt;reason&gt;</code></td><td>Warn a player</td><td class="perm"><code>jettunified.warn</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/warncount &lt;player|all&gt;</code></td><td>Show warnings. Also /warnstatus</td><td class="perm"><code>jettunified.warncount</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/warnreset &lt;player&gt;</code></td><td>Clear warnings</td><td class="perm"><code>jettunified.warnreset</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/kill &lt;player&gt;</code></td><td>Kill a player</td><td class="perm"><code>jettunified.kill</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/killall &lt;hostile|passive|xp|dropped|all&gt;</code></td><td>Remove entities in your world</td><td class="perm"><code>jettunified.killall</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/sudo &lt;player&gt; &lt;command&gt;</code></td><td>Run a command as a player</td><td class="perm"><code>jettunified.sudo</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/socialspy</code></td><td>See private messages</td><td class="perm"><code>jettunified.socialspy</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/invsee &lt;player&gt;</code></td><td>View and edit an inventory</td><td class="perm"><code>jettunified.invsee</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ecsee &lt;player&gt;</code></td><td>View and edit an ender chest</td><td class="perm"><code>jettunified.ecsee</code></td><td><span class="tag op">op</span></td></tr></tbody></table></div></section><section id="admintools"><h2>Admin Tools &amp; Utilities</h2>
+<p>Each admin tool can be turned off on its own in <code>modules/commands/config.yml</code> with <code>&lt;command&gt;.enabled: false</code>. Utilities include portable workstations, <code>/repair</code>, <code>/condense</code> and game mode shortcuts.</p>
+<div class="callout warn"><strong>Power tools:</strong> bound commands run with raised permissions. Only give bound items to players you trust. By default players also need <code>jettunified.powertool.use</code>.</div></section><section id="commands"><h2>All commands</h2>
+<p>132 commands, grouped by area. Type to filter.</p>
+<input class="perm-filter" type="search" placeholder="Filter commands…" data-filter-table="cmd-table" aria-label="Filter commands">
+<div class="table-wrap"><table id="cmd-table"><thead><tr><th>Command</th><th>What it does</th><th>Permission</th><th>Default</th></tr></thead><tbody><tr><td><code>/ju reload</code></td><td>Reload configs and apply module changes without a restart</td><td class="perm"><code>jettunified.admin</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju modules</code></td><td>Open the Module Manager GUI</td><td class="perm"><code>jettunified.admin</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage status</code></td><td>Show the active storage backend</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage backup</code></td><td>Back up the database</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage migrate</code></td><td>Migrate data between storage backends</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ju storage integrity</code></td><td>Check the database</td><td class="perm"><code>jettunified.storage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/rankinfo &lt;player&gt;</code></td><td>Show LuckPerms rank display info</td><td class="perm"><code>jettunified.rankdisplay</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/spawn</code></td><td>Teleport to spawn</td><td class="perm"><code>jettunified.spawn</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/setspawn</code></td><td>Set the spawn point</td><td class="perm"><code>jettunified.setspawn</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/lobby</code></td><td>Teleport to the lobby</td><td class="perm"><code>jettunified.lobby</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/setlobby</code></td><td>Set the lobby point</td><td class="perm"><code>jettunified.lobby.set</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/home [name]</code></td><td>Teleport to a home</td><td class="perm"><code>jettunified.home</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/sethome [name]</code></td><td>Set a home</td><td class="perm"><code>jettunified.sethome</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/delhome &lt;name&gt;</code></td><td>Delete a home</td><td class="perm"><code>jettunified.delhome</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/homes</code></td><td>List your homes</td><td class="perm"><code>jettunified.homes</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/warp &lt;name&gt;</code></td><td>Teleport to a warp</td><td class="perm"><code>jettunified.warp</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/warps</code></td><td>List warps</td><td class="perm"><code>jettunified.warp</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/setwarp &lt;name&gt;</code></td><td>Create a warp</td><td class="perm"><code>jettunified.setwarp</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/delwarp &lt;name&gt;</code></td><td>Delete a warp</td><td class="perm"><code>jettunified.delwarp</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/back</code></td><td>Return to your last location</td><td class="perm"><code>jettunified.back</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tpa &lt;player&gt;</code></td><td>Ask to teleport to a player</td><td class="perm"><code>jettunified.tpa</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tpahere &lt;player&gt;</code></td><td>Ask a player to teleport to you</td><td class="perm"><code>jettunified.tpahere</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tpaccept</code></td><td>Accept a request</td><td class="perm"><code>jettunified.tpaccept</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tpdeny</code></td><td>Deny a request</td><td class="perm"><code>jettunified.tpdeny</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tpaall</code></td><td>Ask all players to teleport to you</td><td class="perm"><code>jettunified.tpaall</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/tptoggle</code></td><td>Turn incoming requests on or off</td><td class="perm"><code>jettunified.tptoggle</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tp</code></td><td>Direct teleport</td><td class="perm"><code>jettunified.tp</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/rtp</code></td><td>Random teleport</td><td class="perm"><code>jettunified.rtp</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/kit [name]</code></td><td>Open the kit menu or claim a kit. Admin: create, edit, delete, give, preview, reload</td><td class="perm"><code>jettunified.kit</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/kits</code></td><td>Open the kit menu</td><td class="perm"><code>jettunified.kit</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/team</code></td><td>Team commands (see Teams)</td><td class="perm"><code>jettunified.team</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/balance [player]</code></td><td>Show a balance. Aliases: /bal, /money</td><td class="perm"><code>jettunified.economy.balance</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/pay &lt;player&gt; &lt;amount&gt;</code></td><td>Pay another player</td><td class="perm"><code>jettunified.economy.pay</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/balancetop</code></td><td>Top balances. Alias: /baltop</td><td class="perm"><code>jettunified.economy.balancetop</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/eco &lt;give|take|set|reset&gt; &lt;player&gt; &lt;amount&gt;</code></td><td>Economy admin</td><td class="perm"><code>jettunified.economy.admin</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ec</code></td><td>Open your ender chest. Alias: /echest</td><td class="perm"><code>jettunified.echest</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/anvil</code></td><td>Open an anvil</td><td class="perm"><code>jettunified.anvil</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/craftingtable</code></td><td>Open a crafting table. Alias: /crafttable</td><td class="perm"><code>jettunified.craftingtable</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/etable</code></td><td>Open an enchanting table</td><td class="perm"><code>jettunified.etable</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/grindstone</code></td><td>Open a grindstone. Alias: /gstone</td><td class="perm"><code>jettunified.grindstone</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/smithtable</code></td><td>Open a smithing table</td><td class="perm"><code>jettunified.smithtable</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/loom</code></td><td>Open a loom</td><td class="perm"><code>jettunified.loom</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/stonecutter</code></td><td>Open a stonecutter</td><td class="perm"><code>jettunified.stonecutter</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/repair</code></td><td>Repair items. Alias: /fix</td><td class="perm"><code>jettunified.repair</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/condense</code></td><td>Turn items into blocks</td><td class="perm"><code>jettunified.condense</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/gmc</code></td><td>Creative mode</td><td class="perm"><code>jettunified.gamemode.creative</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/gms</code></td><td>Survival mode</td><td class="perm"><code>jettunified.gamemode.survival</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/gma</code></td><td>Adventure mode</td><td class="perm"><code>jettunified.gamemode.adventure</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/gmsp</code></td><td>Spectator mode</td><td class="perm"><code>jettunified.gamemode.spectator</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/fly</code></td><td>Toggle flight</td><td class="perm"><code>jettunified.fly</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/god</code></td><td>Toggle god mode</td><td class="perm"><code>jettunified.god</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/heal</code></td><td>Heal a player</td><td class="perm"><code>jettunified.heal</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/feed</code></td><td>Feed a player</td><td class="perm"><code>jettunified.feed</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/speed</code></td><td>Set walk or fly speed</td><td class="perm"><code>jettunified.speed</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jump</code></td><td>Jump to the block you look at</td><td class="perm"><code>jettunified.jump</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/top</code></td><td>Go to the highest block</td><td class="perm"><code>jettunified.top</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/bottom</code></td><td>Go to the lowest safe block</td><td class="perm"><code>jettunified.bottom</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/tphere &lt;player&gt;</code></td><td>Teleport a player to you</td><td class="perm"><code>jettunified.tphere</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/tpall</code></td><td>Teleport all players to you</td><td class="perm"><code>jettunified.tpall</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/world &lt;name&gt;</code></td><td>Go to another world</td><td class="perm"><code>jettunified.world</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/hat</code></td><td>Wear the held item</td><td class="perm"><code>jettunified.hat</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/more</code></td><td>Fill the held stack</td><td class="perm"><code>jettunified.more</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/extinguish</code></td><td>Put out fire</td><td class="perm"><code>jettunified.extinguish</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/suicide</code></td><td>Kill yourself in-game</td><td class="perm"><code>jettunified.suicide</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/time</code></td><td>Set world time</td><td class="perm"><code>jettunified.time</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ptime</code></td><td>Set personal time</td><td class="perm"><code>jettunified.ptime</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/weather</code></td><td>Set weather</td><td class="perm"><code>jettunified.weather</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/sleep</code></td><td>Set the time to day</td><td class="perm"><code>jettunified.sleep</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/sleeppercentage</code></td><td>Set sleep percentage</td><td class="perm"><code>jettunified.sleeppercentage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/respawnradius &lt;blocks&gt;</code></td><td>Set the respawn radius</td><td class="perm"><code>jettunified.respawnradius</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/give</code></td><td>Give items</td><td class="perm"><code>jettunified.give</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/enchant</code></td><td>Enchant the held item</td><td class="perm"><code>jettunified.enchant</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/itemname</code></td><td>Rename the held item</td><td class="perm"><code>jettunified.itemname</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/itemlore</code></td><td>Edit item lore</td><td class="perm"><code>jettunified.itemlore</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/skull [player]</code></td><td>Get a player head</td><td class="perm"><code>jettunified.skull</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/spawnmob</code></td><td>Spawn mobs</td><td class="perm"><code>jettunified.spawnmob</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/spawner &lt;mob&gt;</code></td><td>Change a spawner type</td><td class="perm"><code>jettunified.spawner</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/fireball</code></td><td>Shoot a fireball</td><td class="perm"><code>jettunified.fireball</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/nuke &lt;player&gt; [amount]</code></td><td>Drop TNT on a player</td><td class="perm"><code>jettunified.nuke</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/antioch &lt;player&gt;</code></td><td>Strike a player</td><td class="perm"><code>jettunified.antioch</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/bigtree</code></td><td>Grow a big tree</td><td class="perm"><code>jettunified.bigtree</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/clearinventory</code></td><td>Clear an inventory</td><td class="perm"><code>jettunified.clearinventory</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/disposal</code></td><td>Open a trash menu</td><td class="perm"><code>jettunified.disposal</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/nick</code></td><td>Set a nickname</td><td class="perm"><code>jettunified.nick</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/powertool &lt;command&gt;</code></td><td>Bind a command to the held item</td><td class="perm"><code>jettunified.powertool</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/powertooltoggle</code></td><td>Turn your power tools on or off</td><td class="perm"><code>jettunified.powertool</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/msg &lt;player&gt; &lt;text&gt;</code></td><td>Private message. Aliases: /tell, /w</td><td class="perm"><code>jettunified.msg</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/reply &lt;text&gt;</code></td><td>Reply to the last message. Alias: /r</td><td class="perm"><code>jettunified.msg</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/ignore &lt;player&gt;</code></td><td>Ignore a player</td><td class="perm"><code>jettunified.ignore</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/mail</code></td><td>Send and read mail</td><td class="perm"><code>jettunified.mail</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/afk</code></td><td>Toggle AFK</td><td class="perm"><code>jettunified.afk</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/compass</code></td><td>Show your facing direction</td><td class="perm"><code>jettunified.compass</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/getpos [player]</code></td><td>Show coordinates</td><td class="perm"><code>jettunified.getpos</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/playtime [player]</code></td><td>Show play time</td><td class="perm"><code>jettunified.playtime</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/ping</code></td><td>Show ping</td><td class="perm"><code>jettunified.ping</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/tps</code></td><td>Show server TPS</td><td class="perm"><code>jettunified.tps</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/near</code></td><td>List nearby players</td><td class="perm"><code>jettunified.near</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/seen &lt;player&gt;</code></td><td>Show last seen time</td><td class="perm"><code>jettunified.seen</code></td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>/whois &lt;player&gt;</code></td><td>Show player details</td><td class="perm"><code>jettunified.whois</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ban &lt;player&gt; [reason]</code></td><td>Ban a player</td><td class="perm"><code>jettunified.ban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/tempban &lt;player&gt; &lt;duration&gt; [reason]</code></td><td>Temporary ban</td><td class="perm"><code>jettunified.tempban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unban &lt;player&gt;</code></td><td>Remove a ban</td><td class="perm"><code>jettunified.unban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/untempban &lt;player&gt;</code></td><td>Remove a temp ban</td><td class="perm"><code>jettunified.untempban</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/banip &lt;player|ip&gt;</code></td><td>IP ban. Alias: /ban-ip</td><td class="perm"><code>jettunified.banip</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unbanip &lt;ip&gt;</code></td><td>Remove an IP ban</td><td class="perm"><code>jettunified.unbanip</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/banlist</code></td><td>List bans</td><td class="perm"><code>jettunified.banlist</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/kick &lt;player&gt; [reason]</code></td><td>Kick a player</td><td class="perm"><code>jettunified.kick</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/mute &lt;player&gt; [duration] [reason]</code></td><td>Mute a player</td><td class="perm"><code>jettunified.mute</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unmute &lt;player&gt;</code></td><td>Unmute a player</td><td class="perm"><code>jettunified.unmute</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/muteinfo &lt;player&gt;</code></td><td>Show mute details</td><td class="perm"><code>jettunified.muteinfo</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/setjail &lt;name&gt;</code></td><td>Create a jail</td><td class="perm"><code>jettunified.setjail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/deljail &lt;name&gt;</code></td><td>Delete a jail</td><td class="perm"><code>jettunified.deljail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jails</code></td><td>List jails</td><td class="perm"><code>jettunified.jails</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jail &lt;player&gt; &lt;jail&gt; [duration]</code></td><td>Jail a player</td><td class="perm"><code>jettunified.jail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/unjail &lt;player&gt;</code></td><td>Release a player</td><td class="perm"><code>jettunified.unjail</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/jailtime</code></td><td>Show your remaining jail time</td><td class="perm"><code>jettunified.jailtime</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/warn &lt;player&gt; &lt;reason&gt;</code></td><td>Warn a player</td><td class="perm"><code>jettunified.warn</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/warncount &lt;player|all&gt;</code></td><td>Show warnings. Also /warnstatus</td><td class="perm"><code>jettunified.warncount</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/warnreset &lt;player&gt;</code></td><td>Clear warnings</td><td class="perm"><code>jettunified.warnreset</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/kill &lt;player&gt;</code></td><td>Kill a player</td><td class="perm"><code>jettunified.kill</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/killall &lt;hostile|passive|xp|dropped|all&gt;</code></td><td>Remove entities in your world</td><td class="perm"><code>jettunified.killall</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/sudo &lt;player&gt; &lt;command&gt;</code></td><td>Run a command as a player</td><td class="perm"><code>jettunified.sudo</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/socialspy</code></td><td>See private messages</td><td class="perm"><code>jettunified.socialspy</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/invsee &lt;player&gt;</code></td><td>View and edit an inventory</td><td class="perm"><code>jettunified.invsee</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/ecsee &lt;player&gt;</code></td><td>View and edit an ender chest</td><td class="perm"><code>jettunified.ecsee</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/smpcore</code></td><td>Open the SMPCore Manager GUI. Also reload, status, announce</td><td class="perm"><code>jettunified.smpcore</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/certified addhelditem</code></td><td>Certify the held item</td><td class="perm"><code>jettunified.enchantlimiter.certified.manage</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/blockhanditem</code></td><td>Block the held item type</td><td class="perm"><code>jettunified.smpcore.blockitem</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/itemlimit &lt;amount&gt;</code></td><td>Limit the held item type</td><td class="perm"><code>jettunified.smpcore.itemlimit</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/cc</code></td><td>Custom recipes: create, edit, delete, list, enable/disable vanilla recipes. Alias: /customcrafting</td><td class="perm"><code>jettunified.customrecipe.admin</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/bc &lt;message&gt;</code></td><td>Chat broadcast</td><td class="perm"><code>jettunified.broadcast.chat</code></td><td><span class="tag op">op</span></td></tr><tr><td><code>/bcf &lt;message&gt;</code></td><td>Full-screen title broadcast</td><td class="perm"><code>jettunified.broadcast.fullscreen</code></td><td><span class="tag op">op</span></td></tr></tbody></table></div></section><section id="permissions"><h2>All permissions</h2>
+<p>All 140 permissions from <code>plugin.yml</code>. <span class="tag yes">everyone</span> means all players have it by default, <span class="tag op">op</span> means only operators.</p>
+<input class="perm-filter" type="search" placeholder="Filter permissions…" data-filter-table="perm-table" aria-label="Filter permissions">
+<div class="table-wrap"><table id="perm-table"><thead><tr><th>Permission</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>jettunified.admin</code></td><td>Allows access to the Module Manager GUI and all admin features</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.reload</code></td><td>Allows reloading JettUnified</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.storage</code></td><td>Allows viewing, backing up, migrating, and checking JettUnified storage</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.rtp</code></td><td>Allows using /rtp</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.rtp.bypasscooldown</code></td><td>Allows bypassing the /rtp cooldown</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.spawn</code></td><td>Allows using /spawn</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.setspawn</code></td><td>Allows using /setspawn</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.home</code></td><td>Allows using /home</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.sethome</code></td><td>Allows using /sethome</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.homes</code></td><td>Allows using /homes</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.delhome</code></td><td>Allows using /delhome</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.lobby</code></td><td>Allows players to use /lobby</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.lobby.set</code></td><td>Allows admins to use /setlobby</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.echest</code></td><td>Allows players to use /echest</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.echest.reload</code></td><td>Allows reloading ender chest configuration</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.anvil</code></td><td>Allows players to use /anvil</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.etable</code></td><td>Allows players to use /etable</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.grindstone</code></td><td>Allows players to use /grindstone or /gstone</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smithtable</code></td><td>Allows players to use /smithtable</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.craftingtable</code></td><td>Allows players to use /craftingtable or /crafttable</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.repair</code></td><td>Allows players to repair their own items</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.repair.others</code></td><td>Allows players to repair another player&#x27;s items</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.homes.unlimited</code></td><td>Allows unlimited homes</td><td><span class="tag ">nobody</span></td></tr><tr><td><code>jettunified.warp</code></td><td>Allows using /warp and /warps</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.back</code></td><td>Allows using /back</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.setwarp</code></td><td>Allows using /setwarp</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.delwarp</code></td><td>Allows using /delwarp</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.warps.unlimited</code></td><td>Allows unlimited player-created warps</td><td><span class="tag ">nobody</span></td></tr><tr><td><code>jettunified.tpa</code></td><td>Allows using /tpa</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.tpahere</code></td><td>Allows using /tpahere</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.tpaccept</code></td><td>Allows using /tpaccept</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.tpdeny</code></td><td>Allows using /tpdeny</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.team</code></td><td>Allows using /team</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.ban</code></td><td>Allows using /ban</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.tempban</code></td><td>Allows using /tempban</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.unban</code></td><td>Allows using /unban</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.banip</code></td><td>Allows using /banip</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.unbanip</code></td><td>Allows using /unbanip</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.banlist</code></td><td>Allows using /banlist</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.setjail</code></td><td>Allows using /setjail</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.jail</code></td><td>Allows using /jail</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.unjail</code></td><td>Allows using /unjail</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.deljail</code></td><td>Allows using /deljail</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kill</code></td><td>Allows using /kill</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kick</code></td><td>Allows using /kick</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.untempban</code></td><td>Allows using /untempban</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.mute</code></td><td>Allows using /mute</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.unmute</code></td><td>Allows using /unmute</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.muteinfo</code></td><td>Allows using /muteinfo</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.jailtime</code></td><td>Allows using /jailtime</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.jails</code></td><td>Allows using /jails</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.killall</code></td><td>Allows using /killall</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.sudo</code></td><td>Allows using /sudo</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.socialspy</code></td><td>Allows using /socialspy</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.gamemode.creative</code></td><td>Allows using /gmc</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.gamemode.survival</code></td><td>Allows using /gms</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.gamemode.adventure</code></td><td>Allows using /gma</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.gamemode.spectator</code></td><td>Allows using /gmsp</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.gamemode.others</code></td><td>Allows changing another player&#x27;s game mode</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.customrecipe.admin</code></td><td>Allows managing custom recipes</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.customrecipe.create</code></td><td>Allows creating custom recipes</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.customrecipe.edit</code></td><td>Allows editing custom recipes</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.customrecipe.delete</code></td><td>Allows deleting custom recipes</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.customrecipe.reload</code></td><td>Allows reloading custom recipes</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smpcore</code></td><td>Allows using /smpcore</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smpcore.reload</code></td><td>Allows reloading SMPCore configuration</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smpcore.status</code></td><td>Allows viewing SMPCore feature status</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smpcore.announce</code></td><td>Allows announcing enchantment rules to all players</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smpcore.blockitem</code></td><td>Allows managing Block Item blacklist via GUI and command</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.smpcore.itemlimit</code></td><td>Allows configuring Item Limits via GUI and /itemlimit command</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.enchantlimiter.certified.manage</code></td><td>Allows managing certified items and opening the Certified Items GUI</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.enchantlimiter.certified.add</code></td><td>Allows certifying held items</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.enchantlimiter.certified.remove</code></td><td>Allows removing certification from items</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.enchantlimiter.bypass</code></td><td>Complete Enchant Limiter bypass</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.broadcast.chat</code></td><td>Allows using /bc</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.broadcast.fullscreen</code></td><td>Allows using /bcf</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kit</code></td><td>Allows using /kit</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.kit.admin</code></td><td>Full kit administration</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kit.create</code></td><td>Allows creating kits</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kit.delete</code></td><td>Allows deleting kits</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kit.edit</code></td><td>Allows editing kits</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kit.preview</code></td><td>Allows previewing kits</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.kit.reload</code></td><td>Allows reloading kits</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.warp.admin</code></td><td>Sees all warps regardless of visibility</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.rankdisplay</code></td><td>Allows viewing rank display info via /rankinfo</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.command.vanish</code></td><td>Allows using /vanish to toggle vanish mode</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.command.vanish.others</code></td><td>Allows vanishing other players</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.vanish.see</code></td><td>Allows seeing vanished players</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.ecsee</code></td><td>Allows using /ecsee to view and edit player ender chests</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.economy.balance</code></td><td>Allows using /balance</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.economy.balance.others</code></td><td>Allows checking others&#x27; balance</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.economy.pay</code></td><td>Allows using /pay</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.economy.balancetop</code></td><td>Allows using /balancetop</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.economy.admin</code></td><td>Allows using /eco admin commands</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.ping</code></td><td>Allows using /ping</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.near</code></td><td>Allows using /near</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.seen</code></td><td>Allows using /seen</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.whois</code></td><td>Allows using /whois</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.disposal</code></td><td>Allows using /disposal</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.clearinventory</code></td><td>Allows using /clearinventory</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.clearinventory.others</code></td><td>Allows clearing another player&#x27;s inventory</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.give</code></td><td>Allows using /give</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.enchant</code></td><td>Allows using /enchant</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.nick</code></td><td>Allows using /nick</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.nick.others</code></td><td>Allows changing another player&#x27;s nickname</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.afk</code></td><td>Allows using /afk</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.ignore</code></td><td>Allows using /ignore</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.mail</code></td><td>Allows using /mail</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.compass</code></td><td>Allows using /compass</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.tps</code></td><td>Allows using /tps</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.weather</code></td><td>Allows using /weather</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.spawnmob</code></td><td>Allows using /spawnmob</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.fireball</code></td><td>Allows using /fireball</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.nuke</code></td><td>Allows using /nuke</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.antioch</code></td><td>Allows using /antioch</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.bigtree</code></td><td>Allows using /bigtree</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.msg</code></td><td>Allows private messaging with /msg, /tell, /w, /reply and /r</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.ptime</code></td><td>Allows using /ptime</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.ptime.others</code></td><td>Allows changing another player&#x27;s personal time</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.spawner</code></td><td>Allows using /spawner</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.loom</code></td><td>Allows players to use /loom</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.stonecutter</code></td><td>Allows players to use /stonecutter</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.condense</code></td><td>Allows using /condense</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.powertool</code></td><td>Allows binding commands to items with /powertool</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.powertool.use</code></td><td>Allows triggering power-tool bindings held in hand</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.warncount</code></td><td>Allows viewing warning counts with /warncount and /warnstatus</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.warn</code></td><td>Allows using /warn</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.tp</code></td><td>Allows using /tp</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.tpaall</code></td><td>Allows using /tpaall</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.tptoggle</code></td><td>Allows using /tptoggle</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.getpos</code></td><td>Allows using /getpos</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.getpos.others</code></td><td>Allows viewing another player&#x27;s position</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.playtime</code></td><td>Allows using /playtime</td><td><span class="tag yes">everyone</span></td></tr><tr><td><code>jettunified.playtime.others</code></td><td>Allows viewing another player&#x27;s playtime</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.itemname</code></td><td>Allows using /itemname</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.itemlore</code></td><td>Allows using /itemlore</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.skull</code></td><td>Allows using /skull</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.skull.others</code></td><td>Allows getting another player&#x27;s head</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.warnreset</code></td><td>Allows using /warnreset</td><td><span class="tag op">op</span></td></tr><tr><td><code>jettunified.kit.give</code></td><td>Allows granting kits with /kit give</td><td><span class="tag op">op</span></td></tr></tbody></table></div></section><section id="faq"><h2>FAQ</h2>
+<h3>Do I need to restart after changing modules.yml?</h3><p>No. Run <code>/ju reload</code>. Disabled modules unload and their commands are removed.</p>
+<h3>Do I need Vault?</h3><p>No. <code>/balance</code>, <code>/pay</code> and placeholders work without it. Install Vault only if another plugin, like a shop, needs to use the economy.</p>
+<h3>Can I use it with EssentialsX?</h3><p>Many commands overlap. Turn off the JettUnified modules you don't want, or turn off the matching Essentials features, so only one plugin handles each command.</p>
+<h3>Where is my data?</h3><p>Economy and teams are in <code>plugins/JettUnified/data/jettunified.db</code>. Other data is in the YAML files in each module folder. Use <code>/ju storage backup</code> to back up the database, and copy the whole <code>JettUnified</code> folder for a full backup.</p>
+<h3>Is vanish available?</h3><p>Not in 1.0. The vanish system is paused and will come back in a later update.</p></section></article>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2Z" stroke="#d6a84e" stroke-width="1.6"/><path d="M19.5 9v9.2c0 2.6-1.6 4.3-4.1 4.3-1.6 0-2.9-.7-3.7-1.9" stroke="#d6a84e" stroke-width="2.2" stroke-linecap="square"/></svg><span>JettUnified</span></a>
+        <p>A modular survival plugin for Paper. Twenty-plus modules, one jar, one config to turn them on or off.</p>
+      </div>
+      <div>
+        <h4>Plugin</h4>
+        <ul><li><a href="features.html">Features</a></li><li><a href="download.html">Download</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <ul><li><a href="wiki.html#installation">Installation</a></li><li><a href="wiki.html#modules-yml">modules.yml</a></li><li><a href="wiki.html#commands">Commands</a></li><li><a href="wiki.html#permissions">Permissions</a></li></ul>
+      </div>
+      <div>
+        <h4>Works with</h4>
+        <ul><li><a href="https://papermc.io/" rel="noopener">Paper</a></li><li><a href="https://luckperms.net/" rel="noopener">LuckPerms</a></li><li><a href="https://www.spigotmc.org/resources/vault.34315/" rel="noopener">Vault</a></li><li><a href="https://www.spigotmc.org/resources/placeholderapi.6245/" rel="noopener">PlaceholderAPI</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>JettUnified 1.0 · Made by ItsFlaty</span>
+      <span>Not affiliated with Mojang or Microsoft.</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Features · JettUnified</title>
+<meta name="description" content="Full feature list of JettUnified: every module, what it does and the commands it adds.">
+<meta name="theme-color" content="#0d0c0a">
+<meta property="og:title" content="Features · JettUnified">
+<meta property="og:description" content="Full feature list of JettUnified: every module, what it does and the commands it adds.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2Z" stroke="#d6a84e" stroke-width="1.6"/><path d="M19.5 9v9.2c0 2.6-1.6 4.3-4.1 4.3-1.6 0-2.9-.7-3.7-1.9" stroke="#d6a84e" stroke-width="2.2" stroke-linecap="square"/></svg><span>JettUnified</span><small>v1.0</small></a>
+    <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html" aria-current="page">Features</a></li><li><a href="wiki.html">Wiki</a></li><li><a href="download.html">Download</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download</a></div>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </nav>
+</header>
+<main id="main">
+
+<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Features</div>
+  <h1>Features</h1>
+  <p>Every module in JettUnified 1.0, with what it does and the commands it adds. All modules can be turned off in <code>modules.yml</code>.</p>
+</div></section>
+<div class="wrap">
+  <div class="feature-toolbar"><button class="chip" data-filter="all" aria-pressed="true">All modules</button><button class="chip" data-filter="Teleportation" aria-pressed="false">Teleportation</button><button class="chip" data-filter="Players" aria-pressed="false">Players</button><button class="chip" data-filter="Staff" aria-pressed="false">Staff</button><button class="chip" data-filter="Server" aria-pressed="false">Server</button></div>
+  <article class="fgroup" id="spawn" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>Spawn</h2><p class="summary">A server spawn point with a teleport delay and cooldown.</p><span class="key">modules.spawn</span></div>
+  <div><ul class="flist"><li>Set the spawn point in-game</li><li>Teleport delay with cancel-on-move</li><li>Per-use cooldown</li></ul><div class="cmds"><code>/spawn</code><code>/setspawn</code></div></div>
+</article><article class="fgroup" id="lobby" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>Lobby</h2><p class="summary">A separate lobby location with its own delay, cooldown and sounds.</p><span class="key">modules.lobby</span></div>
+  <div><ul class="flist"><li>Set the lobby point in-game</li><li>Configurable start and success sounds</li><li>Optional delay and cooldown</li></ul><div class="cmds"><code>/lobby</code><code>/setlobby</code></div></div>
+</article><article class="fgroup" id="homes" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>Homes</h2><p class="summary">Personal homes with a limit per player.</p><span class="key">modules.homes</span></div>
+  <div><ul class="flist"><li>Home limit per player (default 3)</li><li>Unlimited homes by permission</li><li>Optional overwrite of existing homes</li><li>Teleport delay and cooldown</li></ul><div class="cmds"><code>/home</code><code>/sethome</code><code>/delhome</code><code>/homes</code></div></div>
+</article><article class="fgroup" id="warps" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>Warps</h2><p class="summary">Server warps, with optional player-created warps.</p><span class="key">modules.warps</span></div>
+  <div><ul class="flist"><li>Admin warps</li><li>Optional player warps with a per-player limit</li><li>Unlimited player warps by permission</li><li>Teleport delay and cooldown</li></ul><div class="cmds"><code>/warp</code><code>/warps</code><code>/setwarp</code><code>/delwarp</code></div></div>
+</article><article class="fgroup" id="back" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>Back</h2><p class="summary">Return to your last location after a teleport or death.</p><span class="key">modules.back</span></div>
+  <div><ul class="flist"><li>Records location before death</li><li>Records location before teleport</li><li>Delay and cooldown</li><li>Can be blocked after PvP deaths (SMPCore Combat)</li></ul><div class="cmds"><code>/back</code></div></div>
+</article><article class="fgroup" id="tpa" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>TPA</h2><p class="summary">Teleport requests between players.</p><span class="key">modules.tpa</span></div>
+  <div><ul class="flist"><li>Requests expire after 60 seconds (configurable)</li><li>Request to you or to them</li><li>Players can toggle requests off</li><li>Delay, cancel-on-move and cooldown</li></ul><div class="cmds"><code>/tpa</code><code>/tpahere</code><code>/tpaccept</code><code>/tpdeny</code><code>/tpaall</code><code>/tptoggle</code><code>/tp</code></div></div>
+</article><article class="fgroup" id="rtp" data-group="Teleportation">
+  <div><span class="group">Teleportation</span><h2>RTP</h2><p class="summary">Random teleport to a safe spot in the world.</p><span class="key">modules.rtp</span></div>
+  <div><ul class="flist"><li>Min and max radius (500 – 5000 blocks by default)</li><li>Avoids water, lava and leaves</li><li>Option to only use already generated chunks</li><li>Async chunk loading</li><li>Sound and particle effects</li><li>Cooldown with bypass permission</li></ul><div class="cmds"><code>/rtp</code></div></div>
+</article><article class="fgroup" id="kits" data-group="Players">
+  <div><span class="group">Players</span><h2>Kits</h2><p class="summary">Kits with a full in-game GUI for players and admins.</p><span class="key">modules.kits</span></div>
+  <div><ul class="flist"><li>Kit menu, detail view and preview</li><li>Ranked kits by permission</li><li>Per-kit cooldowns</li><li>Create and edit kits in-game</li><li>Give a kit to a player</li></ul><div class="cmds"><code>/kit</code><code>/kits</code></div></div>
+</article><article class="fgroup" id="teams" data-group="Players">
+  <div><span class="group">Players</span><h2>Teams</h2><p class="summary">Player teams with roles, chat, allies, homes, warps and a shared ender chest.</p><span class="key">modules.teams</span></div>
+  <div><ul class="flist"><li>Owner, promote and demote roles</li><li>Public or invite-only teams</li><li>Invites expire after 60 seconds</li><li>Disband needs confirmation</li><li>Team chat and ally chat</li><li>Team home and up to 5 team warps</li><li>Shared team ender chest (27 or 54 slots)</li><li>Team color, title and MOTD</li><li>Friendly-fire toggle</li><li>Team prefix in TAB, chat and nametags</li><li>Team settings GUI</li></ul><div class="cmds"><code>/team</code></div></div>
+</article><article class="fgroup" id="economy" data-group="Players">
+  <div><span class="group">Players</span><h2>Economy</h2><p class="summary">A built-in economy with an optional Vault bridge.</p><span class="key">modules.economy</span></div>
+  <div><ul class="flist"><li>Balances stored by JettUnified itself</li><li>Works without Vault</li><li>Registers as a Vault provider for shop plugins</li><li>Configurable currency name and format</li><li>Balance top list</li><li>Balance placeholders</li></ul><div class="cmds"><code>/balance</code><code>/pay</code><code>/balancetop</code><code>/eco</code></div></div>
+</article><article class="fgroup" id="echest" data-group="Players">
+  <div><span class="group">Players</span><h2>Ender Chest</h2><p class="summary">Open your ender chest from anywhere.</p><span class="key">modules.echest</span></div>
+  <div><ul class="flist"><li>Size 27 or 54 slots</li><li>Works with /ecsee for staff</li></ul><div class="cmds"><code>/ec</code><code>/echest</code></div></div>
+</article><article class="fgroup" id="invsee" data-group="Staff">
+  <div><span class="group">Staff</span><h2>InvSee</h2><p class="summary">Look at and edit another player&#x27;s inventory.</p><span class="key">modules.invsee</span></div>
+  <div><ul class="flist"><li>Works on offline players</li><li>Live sync while the menu is open</li></ul><div class="cmds"><code>/invsee</code></div></div>
+</article><article class="fgroup" id="ecsee" data-group="Staff">
+  <div><span class="group">Staff</span><h2>EcSee</h2><p class="summary">Look at and edit another player&#x27;s ender chest.</p><span class="key">modules.ecsee</span></div>
+  <div><ul class="flist"><li>Works on offline players</li><li>Edits the same ender chest as /ec</li></ul><div class="cmds"><code>/ecsee</code></div></div>
+</article><article class="fgroup" id="customrecipe" data-group="Server">
+  <div><span class="group">Server</span><h2>Custom Recipes</h2><p class="summary">Create custom crafting recipes in a GUI and turn off vanilla recipes.</p><span class="key">modules.customrecipe</span></div>
+  <div><ul class="flist"><li>Recipe editor GUI</li><li>Recipes register without a restart</li><li>Edit, delete, enable and disable recipes</li><li>Disable any vanilla recipe by ID</li><li>Optional recipe limit</li></ul><div class="cmds"><code>/cc</code><code>/customcrafting</code></div></div>
+</article><article class="fgroup" id="broadcast" data-group="Server">
+  <div><span class="group">Server</span><h2>Broadcast</h2><p class="summary">Server announcements in chat or on screen.</p><span class="key">modules.broadcast</span></div>
+  <div><ul class="flist"><li>Chat broadcast with prefix</li><li>Full-screen title broadcast</li><li>Configurable fade times and sound</li></ul><div class="cmds"><code>/bc</code><code>/bcf</code></div></div>
+</article><article class="fgroup" id="tab" data-group="Server">
+  <div><span class="group">Server</span><h2>TAB</h2><p class="summary">TAB list, sidebar scoreboard and nametags in one module.</p><span class="key">modules.tab</span></div>
+  <div><ul class="flist"><li>Header and footer designs with display conditions</li><li>Sidebar scoreboard (up to 15 lines)</li><li>Group-based tab and nametag prefixes</li><li>Player-list and below-name objectives</li><li>Animations</li><li>MiniMessage, legacy colors and PlaceholderAPI</li></ul></div>
+</article><article class="fgroup" id="rankdisplay" data-group="Server">
+  <div><span class="group">Server</span><h2>Rank Display</h2><p class="summary">Shows LuckPerms prefixes in the TAB list.</p><span class="key">luckperms-rank-support.enabled</span></div>
+  <div><ul class="flist"><li>Reads LuckPerms prefixes</li><li>Custom format such as {prefix}{player}</li><li>Optional fallback prefix</li><li>Does nothing if LuckPerms is not installed</li></ul><div class="cmds"><code>/rankinfo</code></div></div>
+</article><article class="fgroup" id="smpcore" data-group="Server">
+  <div><span class="group">Server</span><h2>SMPCore</h2><p class="summary">Gameplay rules for survival servers, all managed from one GUI.</p><span class="key">modules.smpcore.enabled</span></div>
+  <div><div class="sub-list"><div class="sub-item"><h4>Potion Limiter</h4><p>Block any potion in normal, long and strong forms. It also blocks splash, lingering and tipped arrow versions. Click a potion in the menu to toggle it.</p></div><div class="sub-item"><h4>Enchant Limiter</h4><p>Block an enchantment or set its max level, including mace enchantments. Bypass items work by item type. Certified items bypass all limits with a hidden ID on that one copy.</p></div><div class="sub-item"><h4>Combat</h4><p>Combat timer (20 s by default) with optional combat-log kill. You can block commands, teleports, ender pearls, riptide, elytra, totems in combat and /back after a PvP death.</p></div><div class="sub-item"><h4>World Rules</h4><p>Over 40 switches: portals, explosions, mob spawning, villager trading, fire spread, water and lava flow, raids, weather, natural regen, fall damage, PvP and workstation blocks.</p></div><div class="sub-item"><h4>Quality of Life</h4><p>Auto-smelt, tree capitator, vein miner, double doors, silk-touch spawners, auto pickup, death chests (15 min expiry) and crop replant.</p></div><div class="sub-item"><h4>Block Item</h4><p>Remove listed item types from the server with a warning. Certified items are still allowed.</p></div><div class="sub-item"><h4>Cooldown Control</h4><p>Add an extra use cooldown to any item type, up to 300 seconds by default.</p></div><div class="sub-item"><h4>Item Limits</h4><p>Set the most of an item type a player can carry. Main inventory, hotbar, offhand and armor all count.</p></div></div><div class="cmds"><code>/smpcore</code><code>/certified</code><code>/blockhanditem</code><code>/itemlimit</code></div></div>
+</article><article class="fgroup" id="moderation" data-group="Staff">
+  <div><span class="group">Staff</span><h2>Moderation</h2><p class="summary">Bans, mutes, jails and warnings.</p><span class="key">modules.commands.moderation</span></div>
+  <div><ul class="flist"><li>Ban, temp ban and IP ban</li><li>Mute with time</li><li>Jails with movement radius and command block</li><li>Warnings with count and reset</li><li>Kick, kill, sudo and social spy</li><li>Appeal link on ban screen</li><li>Clean console for ban screens</li></ul><div class="cmds"><code>/ban</code><code>/tempban</code><code>/unban</code><code>/untempban</code><code>/banip</code><code>/unbanip</code><code>/banlist</code><code>/kick</code><code>/mute</code><code>/unmute</code><code>/muteinfo</code><code>/jail</code><code>/unjail</code><code>/setjail</code><code>/deljail</code><code>/jails</code><code>/jailtime</code><code>/warn</code><code>/warncount</code><code>/warnstatus</code><code>/warnreset</code><code>/kill</code><code>/killall</code><code>/sudo</code><code>/socialspy</code></div></div>
+</article><article class="fgroup" id="admintools" data-group="Staff">
+  <div><span class="group">Staff</span><h2>Admin Tools</h2><p class="summary">Everyday admin and player commands. Each one can be turned off on its own.</p><span class="key">modules.commands.admintools</span></div>
+  <div><ul class="flist"><li>Fly, god, heal, feed, speed</li><li>Private messages, ignore, mail and AFK</li><li>Nicknames, item name and item lore</li><li>Power tools with a command allowlist</li><li>Time, weather, personal time and sleep percentage</li><li>Info commands: ping, tps, near, seen, whois, playtime, getpos</li></ul><div class="cmds"><code>/fly</code><code>/god</code><code>/heal</code><code>/feed</code><code>/speed</code><code>/msg</code><code>/reply</code><code>/nick</code><code>/powertool</code><code>/mail</code><code>…</code></div></div>
+</article><article class="fgroup" id="utilities" data-group="Players">
+  <div><span class="group">Players</span><h2>Utilities</h2><p class="summary">Portable workstations, repair and quick game modes.</p><span class="key">modules.commands.utilities</span></div>
+  <div><ul class="flist"><li>Anvil, crafting table, enchanting table, grindstone, smithing table, loom and stonecutter</li><li>Repair hand or whole inventory</li><li>Condense items into blocks</li><li>Game mode shortcuts</li></ul><div class="cmds"><code>/anvil</code><code>/crafttable</code><code>/etable</code><code>/gstone</code><code>/smithtable</code><code>/loom</code><code>/stonecutter</code><code>/repair</code><code>/condense</code><code>/gmc</code><code>/gms</code><code>/gma</code><code>/gmsp</code></div></div>
+</article>
+  <article class="fgroup" data-group="Server">
+    <div><span class="group">Core</span><h2>Plugin core</h2><p class="summary">Shared systems used by every module.</p></div>
+    <div><ul class="flist">
+      <li>Module Manager GUI (<code>/ju modules</code>)</li>
+      <li>Enable or disable modules with <code>/ju reload</code></li>
+      <li>SQLite database for economy and teams</li>
+      <li>YAML fallback if SQLite is unavailable</li>
+      <li>Safe file writes for all YAML data</li>
+      <li>Storage status, backup, migrate and integrity check</li>
+      <li>MiniMessage formatting in messages</li>
+      <li>No external database needed</li>
+      <li>Every message editable per module</li>
+    </ul></div>
+  </article>
+  <article class="fgroup" data-group="Staff">
+    <div><span class="group">Staff</span><h2>Vanish</h2><p class="summary">Hide staff from players.</p></div>
+    <div><p class="note">The vanish system is included in the code but is <strong>paused in 1.0</strong>. It is switched off on purpose and will return in a later update.</p></div>
+  </article>
+</div>
+<section class="cta" style="border-top:1px solid var(--line);margin-top:40px">
+  <div class="wrap"><h2>See it on your server</h2><p>Every feature above is in one jar.</p>
+  <div class="hero-actions"><a class="btn btn-primary" href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download</a><a class="btn btn-ghost" href="wiki.html">Read the wiki</a></div></div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2Z" stroke="#d6a84e" stroke-width="1.6"/><path d="M19.5 9v9.2c0 2.6-1.6 4.3-4.1 4.3-1.6 0-2.9-.7-3.7-1.9" stroke="#d6a84e" stroke-width="2.2" stroke-linecap="square"/></svg><span>JettUnified</span></a>
+        <p>A modular survival plugin for Paper. Twenty-plus modules, one jar, one config to turn them on or off.</p>
+      </div>
+      <div>
+        <h4>Plugin</h4>
+        <ul><li><a href="features.html">Features</a></li><li><a href="download.html">Download</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <ul><li><a href="wiki.html#installation">Installation</a></li><li><a href="wiki.html#modules-yml">modules.yml</a></li><li><a href="wiki.html#commands">Commands</a></li><li><a href="wiki.html#permissions">Permissions</a></li></ul>
+      </div>
+      <div>
+        <h4>Works with</h4>
+        <ul><li><a href="https://papermc.io/" rel="noopener">Paper</a></li><li><a href="https://luckperms.net/" rel="noopener">LuckPerms</a></li><li><a href="https://www.spigotmc.org/resources/vault.34315/" rel="noopener">Vault</a></li><li><a href="https://www.spigotmc.org/resources/placeholderapi.6245/" rel="noopener">PlaceholderAPI</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>JettUnified 1.0 · Made by ItsFlaty</span>
+      <span>Not affiliated with Mojang or Microsoft.</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js" defer></script>
+</body>
+</html>

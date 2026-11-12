@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JettUnified — Modular survival plugin for Paper</title>
+<meta name="description" content="JettUnified is a modular survival plugin for Paper with 21 modules: homes, warps, kits, teams, economy, TAB, moderation, SMPCore rules and more.">
+<meta name="theme-color" content="#0d0c0a">
+<meta property="og:title" content="JettUnified — Modular survival plugin for Paper">
+<meta property="og:description" content="JettUnified is a modular survival plugin for Paper with 21 modules: homes, warps, kits, teams, economy, TAB, moderation, SMPCore rules and more.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2Z" stroke="#d6a84e" stroke-width="1.6"/><path d="M19.5 9v9.2c0 2.6-1.6 4.3-4.1 4.3-1.6 0-2.9-.7-3.7-1.9" stroke="#d6a84e" stroke-width="2.2" stroke-linecap="square"/></svg><span>JettUnified</span><small>v1.0</small></a>
+    <ul class="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="features.html">Features</a></li><li><a href="wiki.html">Wiki</a></li><li><a href="download.html">Download</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download</a></div>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </nav>
+</header>
+<main id="main">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Paper plugin · 1.21.x &amp; 26.3</span>
+      <h1>Your whole survival server, <em>in one plugin.</em></h1>
+      <p class="lead">JettUnified replaces a stack of separate plugins with 21 modules with one config style and one reload command. Turn any module off and it unloads on <code>/ju reload</code>, with no restart.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download v1.0</a>
+        <a class="btn btn-ghost" href="wiki.html">Read the wiki <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m0 0-5-5m5 5-5 5"/></svg></a>
+      </div>
+      <div class="hero-meta"><span>21 modules</span><span>132+ commands</span><span>SQLite storage</span></div>
+    </div>
+    <div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>modules.yml</span></div><pre><code><span class="c-com"># plugins/JettUnified/modules.yml</span>
+<span class="c-key">modules</span>:
+  <span class="c-key">spawn</span>: <span class="c-true">true</span>
+  <span class="c-key">homes</span>: <span class="c-true">true</span>
+  <span class="c-key">warps</span>: <span class="c-true">true</span>
+  <span class="c-key">rtp</span>: <span class="c-true">true</span>
+  <span class="c-key">kits</span>: <span class="c-true">true</span>
+  <span class="c-key">teams</span>: <span class="c-true">true</span>
+  <span class="c-key">economy</span>: <span class="c-true">true</span>
+  <span class="c-key">tab</span>: <span class="c-true">true</span>
+  <span class="c-key">commands</span>:
+    <span class="c-key">moderation</span>: <span class="c-true">true</span>
+    <span class="c-key">admintools</span>: <span class="c-true">true</span>
+    <span class="c-key">utilities</span>: <span class="c-false">false</span>
+  <span class="c-key">smpcore</span>:
+    <span class="c-key">enabled</span>: <span class="c-true">true</span>
+    <span class="c-key">enchantlimiter</span>: <span class="c-true">true</span>
+    <span class="c-key">combat</span>: <span class="c-true">true</span>
+    <span class="c-key">qol</span>: <span class="c-false">false</span></code></pre></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Why JettUnified</span><h2>Fewer plugins. Less to keep in sync.</h2></div>
+      <p>Most survival servers run separate plugins for homes, warps, kits, teams, moderation, TAB and economy. Each has its own data files and update cycle. JettUnified puts them under one roof.</p>
+    </div>
+    <div class="cols-3">
+      <div class="point"><span class="num">01</span><h3>Modular by design</h3><p>Every module has its own folder with <code>config.yml</code> and <code>messages.yml</code>. Disable what you don't need from <code>modules.yml</code> or the in-game Module Manager.</p></div>
+      <div class="point"><span class="num">02</span><h3>Safe storage</h3><p>Economy and team data live in an SQLite database that is created on first start. Other data is saved with safe file writes, so a crash mid-save can't corrupt it. <code>/ju storage</code> checks and backs it up.</p></div>
+      <div class="point"><span class="num">03</span><h3>Managed in-game</h3><p>Kits, custom recipes, SMPCore rules, team settings and modules all have GUIs. Most changes save instantly, without editing files.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Modules</span><h2>What's inside</h2></div>
+      <p>Each module can be turned on or off on its own. Click a module to see its full feature list.</p>
+    </div>
+    <div class="module-index"><a class="module-row" href="features.html#spawn"><span class="module-name">Spawn</span><span class="module-desc">A server spawn point with a teleport delay and cooldown.</span></a><a class="module-row" href="features.html#lobby"><span class="module-name">Lobby</span><span class="module-desc">A separate lobby location with its own delay, cooldown and sounds.</span></a><a class="module-row" href="features.html#homes"><span class="module-name">Homes</span><span class="module-desc">Personal homes with a limit per player.</span></a><a class="module-row" href="features.html#warps"><span class="module-name">Warps</span><span class="module-desc">Server warps, with optional player-created warps.</span></a><a class="module-row" href="features.html#back"><span class="module-name">Back</span><span class="module-desc">Return to your last location after a teleport or death.</span></a><a class="module-row" href="features.html#tpa"><span class="module-name">TPA</span><span class="module-desc">Teleport requests between players.</span></a><a class="module-row" href="features.html#rtp"><span class="module-name">RTP</span><span class="module-desc">Random teleport to a safe spot in the world.</span></a><a class="module-row" href="features.html#kits"><span class="module-name">Kits</span><span class="module-desc">Kits with a full in-game GUI for players and admins.</span></a><a class="module-row" href="features.html#teams"><span class="module-name">Teams</span><span class="module-desc">Player teams with roles, chat, allies, homes, warps and a shared ender chest.</span></a><a class="module-row" href="features.html#economy"><span class="module-name">Economy</span><span class="module-desc">A built-in economy with an optional Vault bridge.</span></a><a class="module-row" href="features.html#echest"><span class="module-name">Ender Chest</span><span class="module-desc">Open your ender chest from anywhere.</span></a><a class="module-row" href="features.html#invsee"><span class="module-name">InvSee</span><span class="module-desc">Look at and edit another player&#x27;s inventory.</span></a><a class="module-row" href="features.html#ecsee"><span class="module-name">EcSee</span><span class="module-desc">Look at and edit another player&#x27;s ender chest.</span></a><a class="module-row" href="features.html#customrecipe"><span class="module-name">Custom Recipes</span><span class="module-desc">Create custom crafting recipes in a GUI and turn off vanilla recipes.</span></a><a class="module-row" href="features.html#broadcast"><span class="module-name">Broadcast</span><span class="module-desc">Server announcements in chat or on screen.</span></a><a class="module-row" href="features.html#tab"><span class="module-name">TAB</span><span class="module-desc">TAB list, sidebar scoreboard and nametags in one module.</span></a><a class="module-row" href="features.html#rankdisplay"><span class="module-name">Rank Display</span><span class="module-desc">Shows LuckPerms prefixes in the TAB list.</span></a><a class="module-row" href="features.html#smpcore"><span class="module-name">SMPCore</span><span class="module-desc">Gameplay rules for survival servers, all managed from one GUI.</span></a><a class="module-row" href="features.html#moderation"><span class="module-name">Moderation</span><span class="module-desc">Bans, mutes, jails and warnings.</span></a><a class="module-row" href="features.html#admintools"><span class="module-name">Admin Tools</span><span class="module-desc">Everyday admin and player commands. Each one can be turned off on its own.</span></a><a class="module-row" href="features.html#utilities"><span class="module-name">Utilities</span><span class="module-desc">Portable workstations, repair and quick game modes.</span></a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <span class="label">SMPCore</span>
+      <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.2vw,40px)">Set the rules of your SMP from one menu.</h2>
+      <p class="muted">Run <code>/smpcore</code> to open the SMPCore Manager. Block potions, cap enchant levels, set combat rules and switch off world mechanics, all by clicking.</p>
+      <ul class="checks">
+        <li><strong>Enchant Limiter</strong> with certified items that bypass limits</li>
+        <li><strong>World Rules</strong> with 40+ switches for portals, explosions, spawning and more</li>
+        <li><strong>Combat</strong> timer, combat-log kill, pearl and elytra blocks</li>
+        <li><strong>Item Limits</strong>, <strong>Block Item</strong> and <strong>Cooldown Control</strong></li>
+        <li><strong>Quality of Life</strong>: vein miner, tree capitator, death chests</li>
+      </ul>
+      <p style="margin-top:28px"><a href="features.html#smpcore">All SMPCore features <svg style="display:inline;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m0 0-5-5m5 5-5 5"/></svg></a></p>
+    </div>
+    <div class="code"><div class="code-head"><span class="dots"><i></i><i></i><i></i></span><span>SmpCoreModules/combat.yml</span></div><pre><code><span class="c-key">combat-logging</span>: <span class="c-true">true</span>
+<span class="c-key">combat-timer</span>: <span class="c-num">20</span>
+<span class="c-key">block-commands</span>: <span class="c-true">true</span>
+<span class="c-key">block-teleport</span>: <span class="c-true">true</span>
+<span class="c-key">disable-pearls</span>: <span class="c-false">false</span>
+<span class="c-key">disable-elytra</span>: <span class="c-true">true</span>
+<span class="c-key">totem-in-combat</span>: <span class="c-false">false</span>
+<span class="c-key">block-back</span>: <span class="c-true">true</span></code></pre></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Compatibility</span><h2>Built for modern Paper</h2></div>
+      <p>Two builds of the same release. Pick the one that matches your server version.</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Build</th><th>Server</th><th>Java</th><th>Optional plugins</th></tr></thead>
+      <tbody>
+        <tr><td><code>JettUnified-1.0-1.21.x.jar</code></td><td>Paper 1.21.x (1.21.1+)</td><td>21</td><td>LuckPerms, Vault, PlaceholderAPI</td></tr>
+        <tr><td><code>JettUnified-1.0-26.3.jar</code></td><td>Paper 26.3</td><td>25</td><td>LuckPerms, Vault, PlaceholderAPI</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Ready to try it?</h2>
+    <p>Drop the jar in your plugins folder and start the server. Everything is created for you.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download v1.0</a>
+      <a class="btn btn-ghost" href="wiki.html#installation">Installation guide</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2Z" stroke="#d6a84e" stroke-width="1.6"/><path d="M19.5 9v9.2c0 2.6-1.6 4.3-4.1 4.3-1.6 0-2.9-.7-3.7-1.9" stroke="#d6a84e" stroke-width="2.2" stroke-linecap="square"/></svg><span>JettUnified</span></a>
+        <p>A modular survival plugin for Paper. Twenty-plus modules, one jar, one config to turn them on or off.</p>
+      </div>
+      <div>
+        <h4>Plugin</h4>
+        <ul><li><a href="features.html">Features</a></li><li><a href="download.html">Download</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <ul><li><a href="wiki.html#installation">Installation</a></li><li><a href="wiki.html#modules-yml">modules.yml</a></li><li><a href="wiki.html#commands">Commands</a></li><li><a href="wiki.html#permissions">Permissions</a></li></ul>
+      </div>
+      <div>
+        <h4>Works with</h4>
+        <ul><li><a href="https://papermc.io/" rel="noopener">Paper</a></li><li><a href="https://luckperms.net/" rel="noopener">LuckPerms</a></li><li><a href="https://www.spigotmc.org/resources/vault.34315/" rel="noopener">Vault</a></li><li><a href="https://www.spigotmc.org/resources/placeholderapi.6245/" rel="noopener">PlaceholderAPI</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>JettUnified 1.0 · Made by ItsFlaty</span>
+      <span>Not affiliated with Mojang or Microsoft.</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js" defer></script>
+</body>
+</html>
